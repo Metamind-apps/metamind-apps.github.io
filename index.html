@@ -1,8 +1,285 @@
 <!DOCTYPE html>
-<html>
-<head><title>MetaMind Apps</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMind Apps | Mobile Audio Workstations</title>
+    <style>
+        :root {
+            --bg-color: #0d0f12;
+            --card-bg: #161a22;
+            --accent-blue: #00e5ff;
+            --accent-purple: #9d4edd;
+            --text-main: #f5e6bf; /* Warm minimal cream for high-end readability */
+            --text-muted: #8b9bb4;
+            --border: #252d3a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header / Nav */
+        header {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: #ffffff;
+        }
+
+        .brand span {
+            color: var(--accent-blue);
+        }
+
+        .dev-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .dev-link:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px 0;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-blue);
+        }
+
+        /* App Grid */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+            border-color: #38465a;
+        }
+
+        .app-card.featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+        }
+
+        .app-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .app-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: rgba(0, 229, 255, 0.1);
+            color: var(--accent-blue);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .app-card.upcoming .app-tag {
+            background-color: rgba(157, 78, 221, 0.1);
+            color: var(--accent-purple);
+        }
+
+        .app-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-blue);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 80px 0 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        /* Responsive Tweak */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2rem; }
+            header { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
+</head>
 <body>
-  <h1>Welcome to MetaMind Apps</h1>
-  <p>Developer website for our mobile applications.</p>
+
+    <div class="container">
+        <header>
+            <div class="brand">MetaMind<span>Apps</span></div>
+            <a href="https://play.google.com/store/apps/dev?id=6982882440359361700" target="_blank" class="dev-link">Google Play Developer Profile →</a>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1>High-Performance Mobile Audio Workstations</h1>
+                <p>Native, low-latency audio tools designed for modern tracking, sequencing, and electronic music production on Android.</p>
+            </section>
+
+            <section id="projects">
+                <h2>Active Releases</h2>
+                <div class="app-grid">
+                    <!-- STRIA -->
+                    <div class="app-card featured">
+                        <div class="app-info">
+                            <span class="app-tag">Live on Play Store</span>
+                            <h3>Stria</h3>
+                            <p class="app-description">A compact, powerful music tracker built for structural music design on the go. Experience precise pattern editing and fluid sound generation right from your pocket.</p>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.metamind.stria" target="_blank" class="btn">Get it on Google Play</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="upcoming">
+                <h2>In Development</h2>
+                <div class="app-grid">
+                    <!-- LITTLE MOBY TRACKER -->
+                    <div class="app-card upcoming">
+                        <div class="app-info">
+                            <span class="app-tag">Coming Soon</span>
+                            <h3>Little Moby Tracker</h3>
+                            <p class="app-description">A mobile-optimized music workstation carrying a clean, dense monospace user interface. Built for ultra-fast composition and classic hardware tracking workflows.</p>
+                        </div>
+                        <button class="btn btn-secondary" disabled>Under Development</button>
+                    </div>
+
+                    <!-- STACK LOOPER -->
+                    <div class="app-card upcoming">
+                        <div class="app-info">
+                            <span class="app-tag">In Alpha</span>
+                            <h3>Stack Looper</h3>
+                            <p class="app-description">A fluid live-looping utility focused on layer stacking, real-time audio manipulation, and lightning-fast phrase capture.</p>
+                        </div>
+                        <button class="btn btn-secondary" disabled>Under Development</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 MetaMind Apps. Engineered for low-latency performance.</p>
+        </footer>
+    </div>
+
 </body>
 </html>
