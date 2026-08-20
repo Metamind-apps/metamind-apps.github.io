@@ -43,13 +43,15 @@
         }
 
         .brand {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.05em;
-            color: #ffffff;
+            max-width: 300px;
+            height: auto;
         }
 
-        .brand span { color: var(--accent-blue); }
+        .brand img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
         .dev-link {
             color: var(--text-muted);
@@ -164,7 +166,6 @@
             background: #090b0e;
             border: 1px solid var(--border);
             border-radius: 12px;
-            aspect-ratio: 16 / 9;
             width: 100%;
             display: flex;
             align-items: center;
@@ -177,8 +178,20 @@
 
         .screenshot-display img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .screenshot-display span {
+            display: none;
+        }
+
+        .screenshot-display img:not([src]), .screenshot-display img[src=""] {
+            display: none;
+        }
+
+        .screenshot-display:has(img[style*="display:none"]) span {
+            display: block;
         }
 
         /* Upcoming Grid */
@@ -239,18 +252,17 @@
 
     <div class="container">
         <header>
-            <div class="brand">MetaMind<span>Apps</span></div>
+            <div class="brand">
+                <img src="assets/metamind.jpg" alt="MetaMind Logo">
+            </div>
             <a href="https://play.google.com/store/apps/dev?id=6982882440359361700" target="_blank" class="dev-link">Google Play Profile &rarr;</a>
         </header>
 
         <main>
-            <section class="hero">
-                <h1>High-Performance Mobile Audio Workstations</h1>
-                <p>Native, low-latency audio tools designed for modern tracking, sequencing, and electronic music production on Android.</p>
-            </section>
+
 
             <section id="featured-release">
-                <h2>Active Releases</h2>
+                
                 
                 <!-- STRIA FEATURED SHOWCASE -->
                 <div class="showcase-layout">
@@ -272,7 +284,34 @@
                     <!-- STRIA SCREENSHOT SLOT -->
                     <div class="screenshot-display">
                         <img src="assets/stria-screenshot.png" alt="Stria Tracker Interface Screenshot" onerror="this.style.display='none';">
-                        <span>[ Place Stria Screenshot Here ]</span>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="lmt-release">
+                
+                <!-- LITTLE MOBY TRACKER FEATURED SHOWCASE -->
+                <div class="showcase-layout">
+                    <div class="details-side">
+                        <div class="app-header-block">
+                            <!-- LMT ICON SLOT -->
+                            <img class="app-icon" src="assets/lmt-icon.png" alt="LMT Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="app-icon" style="display:none;">LMT</div>
+                            
+                            <div class="app-title-area">
+                                <span class="app-tag">Live on Play Store</span>
+                                <h3>Little Moby Tracker</h3>
+                            </div>
+                        </div>
+                        <p class="app-description">A mobile-optimized music workstation carrying a clean, dense monospace user interface. Built for ultra-fast composition and precise control.</p>
+                        <a href="https://play.google.com/store/apps/details?id=com.metamind.lmt" target="_blank" class="btn">Get it on Google Play</a>
+                    </div>
+
+                    <!-- LMT SCREENSHOT SLOT -->
+                    <div class="screenshot-display">
+                        <img src="assets/feature_graphis_lmt.png" alt="Little Moby Tracker Interface Screenshot" onerror="this.style.display='none';">
+
                     </div>
                 </div>
             </section>
@@ -280,22 +319,6 @@
             <section id="upcoming">
                 <h2>In Development</h2>
                 <div class="app-grid">
-                    <!-- LITTLE MOBY TRACKER -->
-                    <div class="app-card upcoming">
-                        <div>
-                            <div class="app-header-block">
-                                <img class="app-icon" src="assets/lmt-icon.png" alt="LMT Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="app-icon" style="display:none;">LMT</div>
-                                <div>
-                                    <span class="app-tag">Coming Soon</span>
-                                    <h4 style="font-size:1.2rem; color:#fff;">Little Moby Tracker</h4>
-                                </div>
-                            </div>
-                            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">A mobile-optimized music workstation carrying a clean, dense monospace user interface. Built for ultra-fast composition.</p>
-                        </div>
-                        <button class="btn btn-secondary" disabled>Under Development</button>
-                    </div>
-
                     <!-- STACK LOOPER -->
                     <div class="app-card upcoming">
                         <div>
